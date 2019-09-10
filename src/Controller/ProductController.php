@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Form\PayType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Swift_Mailer;
+use Swift_Message;
 
 /**
  * @Route("/product")
@@ -31,6 +34,29 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
+    }
+
+    /**
+     * @Route("/pay", name="pay", methods={"GET", "POST"})
+     */
+    public function pay(Swift_Mailer $mailer, Request $response)
+    {
+      $getCart = $this->session->get('cart', []);
+      $message = (new Swift_Message())
+          ->setSubject('Here should be a subject')
+          ->setFrom(['support@mailtrap.io'])
+          ->setTo(['newuser@example.com' => 'New Mailtrap user'])
+          ->setBody(
+            $this->renderView('product/added.html.twig',
+            ['cart' => $getCart]),
+            'text/html'
+          );
+
+      $mailer->send($message);
+      $form = $this->createForm(PayType::class);
+      return $this->render('product/pay.html.twig', [
+        'pay_form' =>$form->createView(),
+      ]);
     }
 
     /**
@@ -103,27 +129,33 @@ class ProductController extends AbstractController
     /**
      * @Route("/added/{id}", name="product_added", methods={"GET", "POST"})
      */
-    public function addToCart(Product $product, $id)
+    public function addToCart(Product $product)
     {
       $getCart = $this->session->get('cart', []);
 
-      if(isset($getCart[$id])) {
-        $getCart[$id]['quantity']++;
+      if(isset($getCart[$product->getId()])) {
+        $getCart[$product->getId()]['quantity']++;
       } else {
-        $getCart[$id] = array(
+        $getCart[$product->getId()] = array(
           'quantity' => 1,
-          'name' =>$product-> getName(),
+          'name' => $product->getName(),
           'price' => $product->getPrice(),
-          'id' =>$product->getId());
+          'id' => $product->getId());
       }
+
+      // DEZE CODE WORDT NIET MEER GEBRUIKT KIJK NAAR TWIG VOOR BEREKENING
+      // foreach($getCart as $id => $details)
+      // {
+      //   $total = $total + ($getCart[$id]['quantity'] * $getCart[$id]['price']);
+      // }
 
       $this->session->set('cart', $getCart);
 
       var_dump($this->session->get('cart'));
 
       return $this->render('product/added.html.twig',[
-        'product' => $getCart[$id]['name'],
-        'quantity' => $getCart[$id]['quantity'],
+        'product' => $getCart[$product->getId()]['name'],
+        'quantity' => $getCart[$product->getId()]['quantity'],
         'cart' => $getCart
       ]);
     }
