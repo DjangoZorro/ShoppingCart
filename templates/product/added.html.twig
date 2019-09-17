@@ -4,7 +4,7 @@
 
 {% block body %}
   <div class="example-wrapper">
-      <h1>Added to your Shoppingcart!</h1>
+      <h1>Shoppingcart!</h1>
 
       <table class="table table-sm">
         <thead>
@@ -23,13 +23,12 @@
           <td> {{ array.name }} </td>
           <td> {{ array.price }} </td>
           <td> {{ array.quantity }} </td>
-          <td> {{ array.quantity * array.price }}</td>
+          <td> € {{ array.quantity * array.price }},-</td>
           {% set total = total + (array.quantity * array.price) %}
         {% else %}
           <td colspan="3">no records found</td>
         {% endfor %}
-          <td>Total: €{{ total }} </td>
-          <td><a href="{{ path('pay')}}">Pay</a></td>
+          <td><a class="btn btn-primary" href="{{ path('pay')}}">Pay</a></td>
         </tr>
         </tbody>
       </table>

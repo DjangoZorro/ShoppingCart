@@ -13,7 +13,8 @@
                 <th>Price</th>
                 <th>Image</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Actions</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +26,10 @@
                 <td>{{ product.image }}</td>
                 <td>{{ product.description }}</td>
                 <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                    <a href="{{ path('product_added', {'id': product.id}) }}">add</a>
+                    <a class="btn btn-info" href="{{ path('product_show', {'id': product.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    <a class="btn btn-success" href="{{ path('product_added', {'id': product.id}) }}">add</a>
+                    <td>{{ include('product/_delete_form.html.twig') }}</td>
                 </td>
             </tr>
         {% else %}
@@ -38,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_new') }}">Create new</a>
+    <a class="btn btn-dark" href="{{ path('product_new') }}">Create new</a>
 {% endblock %}

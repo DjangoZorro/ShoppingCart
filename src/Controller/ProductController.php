@@ -151,8 +151,6 @@ class ProductController extends AbstractController
 
       $this->session->set('cart', $getCart);
 
-      var_dump($this->session->get('cart'));
-
       return $this->render('product/added.html.twig',[
         'product' => $getCart[$product->getId()]['name'],
         'quantity' => $getCart[$product->getId()]['quantity'],
