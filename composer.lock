@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1941aef6c8dff8b36ea54423dd4c550",
+    "content-hash": "d78038f97a2723676406e84da6200082",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2045,6 +2045,28 @@
                 "mailer"
             ],
             "time": "2019-04-21T09:21:45+00:00"
+        },
+        {
+            "name": "symfony/apache-pack",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/apache-pack.git",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/apache-pack/zipball/3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "shasum": ""
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for Apache support in Symfony",
+            "time": "2017-12-12T01:46:35+00:00"
         },
         {
             "name": "symfony/asset",
@@ -5797,6 +5819,7 @@
                 "code",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2019-08-31T14:14:34+00:00"
         },
         {
@@ -5851,6 +5874,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],
@@ -6558,16 +6582,16 @@
         },
         {
             "name": "symfony/web-server-bundle",
-            "version": "v4.3.4",
+            "version": "v4.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-server-bundle.git",
-                "reference": "dc26b980900ddf3e9feade14e5b21c029e8ca92f"
+                "reference": "2338445b78f1fb212a96f4286abdc77ee1e92607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/dc26b980900ddf3e9feade14e5b21c029e8ca92f",
-                "reference": "dc26b980900ddf3e9feade14e5b21c029e8ca92f",
+                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/2338445b78f1fb212a96f4286abdc77ee1e92607",
+                "reference": "2338445b78f1fb212a96f4286abdc77ee1e92607",
                 "shasum": ""
             },
             "require": {
@@ -6613,7 +6637,7 @@
             ],
             "description": "Symfony WebServerBundle",
             "homepage": "https://symfony.com",
-            "time": "2019-08-20T14:27:59+00:00"
+            "time": "2020-01-04T12:24:57+00:00"
         }
     ],
     "aliases": [],
